@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import logo from './Assets/logo.png'
+import logo from './Assets/logo.png';
+import WelcomeScreen from './WelcomeScreen';
 
 function App() {
   const [isLoginView, setIsLoginView] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -84,6 +87,10 @@ function App() {
     });
   };
 
+  if (isLoggedIn) {
+    return <WelcomeScreen currentUser={currentUser} onLogout={() => setIsLoggedIn(false)} />;
+  }
+
   return (
     <div className="App">
       <div className="registration-container">
@@ -107,7 +114,9 @@ function App() {
                     setIsLoginView(true);
                     setFormData(prev => ({...prev, password: '', confirmPassword: '', acceptTerms: false}));
                   } else {
-                    // Login successful - reset form
+                    // Login successful - go to welcome screen
+                    setIsLoggedIn(true);
+                    setCurrentUser(formData.email.split('@')[0] || 'Usuário');
                     setFormData({name: '', email: '', password: '', confirmPassword: '', acceptTerms: false});
                   }
                 }}

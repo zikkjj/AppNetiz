@@ -1,0 +1,239 @@
+/* WelcomeScreen.css */
+/* Design System Variables */
+:root {
+  --netiz-bg: #0077C8;
+  --netiz-card-bg: #1A3A5C;
+  --netiz-accent: #F5C842;
+  --netiz-text-muted: #A8C4E0;
+  --netiz-text-cta: #1A1A2E;
+  --netiz-white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--netiz-bg);
+}
+
+.welcome-container {
+  min-height: 100vh;
+  background-color: var(--netiz-bg);
+  color: var(--netiz-white);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.welcome-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.welcome-logo {
+  height: 40px; /* Adjust according to the actual logo size */
+  object-fit: contain;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--netiz-white);
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  color: var(--netiz-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content */
+.welcome-main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 48px;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-bottom: 48px;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--netiz-accent);
+  margin: 0 0 16px 0;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--netiz-white);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.hero-subtitle strong {
+  font-weight: 700;
+}
+
+.dot-icon {
+  width: 6px;
+  height: 6px;
+  background-color: var(--netiz-accent);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-badge {
+  background-color: var(--netiz-accent);
+  color: var(--netiz-text-cta);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Quick Access Cards */
+.quick-access {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--netiz-card-bg);
+  border: 2px solid var(--netiz-accent);
+  border-radius: 14px;
+  padding: 24px 16px; /* slightly more padding for content breathing room vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  color: var(--netiz-accent);
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--netiz-white);
+  margin: 0 0 8px 0;
+}
+
+.card-description {
+  font-size: 14px;
+  color: var(--netiz-text-muted);
+  margin: 0 0 24px 0;
+  flex: 1; /* Pushes the button to the bottom */
+  line-height: 1.4;
+}
+
+.card-cta {
+  background-color: var(--netiz-accent);
+  color: var(--netiz-text-cta);
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+  align-self: flex-start;
+}
+
+.card-cta:hover {
+  filter: brightness(1.1);
+}
+
+/* Footer */
+.welcome-footer {
+  padding: 24px 48px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  background-color: transparent;
+}
+
+.footer-link {
+  color: var(--netiz-text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--netiz-white);
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-header {
+    padding: 16px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .user-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .welcome-main {
+    padding: 24px 16px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .quick-access {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-footer {
+    padding: 16px;
+  }
+}
