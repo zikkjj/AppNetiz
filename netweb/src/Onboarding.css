@@ -129,54 +129,201 @@
 .btn-warning { background: #FFC107; color: black; }
 .btn-base:disabled { opacity: 0.6; cursor: not-allowed; }
 
-/* Plan Card */
-.plans-grid-stacked {
+/* Plan Card Styles */
+.plans-container-wide {
+  max-width: 1200px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.ntz-plans-row {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
-.styled-plan-card {
-  border: 1px solid #E5E7EB;
-  border-radius: 12px;
-  padding: 20px;
+@media (min-width: 900px) {
+  .ntz-plans-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+/* Plan Card Base Styles */
+.ntz-card {
+  flex: 1;
+  border-radius: 16px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.ntz-card-light {
   background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  border: 1px solid #E5E7EB;
+  color: #111827;
 }
-.styled-plan-card:hover {
-  border-color: #1A73E8;
-  box-shadow: 0 4px 12px rgba(26,115,232,0.1);
+.ntz-card-dark {
+  background: #0B3968; /* deep blue */
+  color: white;
+  border: 1px solid #08294B;
+  transform: scale(1.02); /* pop */
+  z-index: 2;
 }
-.plan-name-badge {
-  font-size: 12px;
-  font-weight: 700;
-  color: #1A73E8;
-  text-transform: uppercase;
-  margin: 0 0 8px 0;
+
+.ntz-card-header {
+  text-align: center;
+  margin-bottom: 24px;
 }
-.styled-plan-price {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 16px;
-}
-.styled-plan-price span {
+.ntz-name {
   font-size: 14px;
-  color: #6B7280;
-  font-weight: 500;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
 }
-.styled-features-list {
+.ntz-card-light .ntz-name { color: #083770; }
+.ntz-card-dark .ntz-name { color: white; }
+
+.ntz-price-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.ntz-currency {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+.ntz-value {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2.5px;
+}
+.ntz-cents {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+.ntz-period {
+  font-size: 16px;
+  align-self: flex-end;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.ntz-card-light .ntz-price-box { color: #083770; }
+.ntz-card-dark .ntz-price-box { color: white; }
+
+.ntz-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 90%;
+}
+.ntz-card-light .ntz-desc { color: #6B7280; }
+.ntz-card-dark .ntz-desc { color: #E2E8F0; }
+
+.ntz-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 16px 0;
+  margin: 0 0 32px 0;
+  flex: 1;
 }
-.styled-features-list li {
-  font-size: 14px;
+.ntz-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+.ntz-card-dark .ntz-feat-item { border-bottom: 1px dashed rgba(255,255,255,0.15); }
+.ntz-feat-item:last-child { border-bottom: none; }
+
+.ntz-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.icon-light { background: #E8F0FE; color: #1A73E8; }
+.icon-dark { background: rgba(255,255,255,0.1); color: white; }
+
+.ntz-feat-text {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.ntz-card-light .ntz-feat-text { color: #374151; }
+.ntz-card-dark .ntz-feat-text { color: white; }
+
+.feat-highlighted {
+  border: 1.5px solid #22C55E;
+  color: #16A34A !important;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.ntz-promo {
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.promo-light { background: #F8FAFC; }
+.promo-dark { background: rgba(255,255,255,0.08); }
+
+.ntz-promo-text-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
-  color: #374151;
+  margin-bottom: 12px;
 }
-.card-select-btn { width: 100%; border-radius: 6px; padding: 10px; }
+.ntz-promo-text-row p { margin: 0; font-size: 12px; font-weight: 500; }
+.ntz-card-light .ntz-promo-text-row p { color: #0EA5E9; }
+.ntz-card-dark .ntz-promo-text-row p { color: #38BDF8; }
+
+.ntz-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.ntz-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: white;
+}
+.badge-valivros { background: #38BDF8; }
+.badge-watch { background: #111827; }
+.badge-universal { background: #1F2937; }
+.badge-hbomax { background: #7C3AED; }
+
+.ntz-btn-yellow {
+  background: #FFC107;
+  color: #111827;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 24px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.ntz-btn-yellow:hover {
+  transform: scale(1.05);
+}
 
 /* Map & Others */
 .map-placeholder {

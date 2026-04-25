@@ -80,25 +80,53 @@ const OnboardingHome = () => {
   };
 
   const plans = [
-    { id: 1, name: 'BÁSICO', price: '89,90', speed: '300Mbps', features: ['Wi-fi alta vel.', 'Instalação inclusa'] },
-    { id: 2, name: '+SAÚDE PLAY', price: '99,90', speed: '900Mbps', features: ['App Netiz', 'Atendimento Médico', 'Streaming'] },
-    { id: 3, name: 'PREMIUM', price: '129,90', speed: '1 Giga', features: ['Wi-Fi Mesh', 'Atendim. Prioritário'] }
+    { 
+      id: 1, name: '+SAÚDE', price: '89', variant: 'light',
+      description: 'Ideal pra quem quer velocidade de sobra com cuidado de verdade.',
+      features: [
+        { icon: 'wifi', text: 'Internet Fibra 700Mbps' },
+        { icon: 'signal', text: 'Wi-fi de alta velocidade' },
+        { icon: 'smartphone', text: 'App Netiz - seu app para serviços' },
+        { icon: 'download', text: '700Mbps / 350Mbps up' },
+        { icon: 'stethoscope', text: 'Atendimento Médico ONLINE 24h para você e mais 3 dependentes' },
+        { icon: 'user-md', text: 'CLÍNICO GERAL E PEDIATRIA' }
+      ],
+      promo: { text: 'App com e-books e/ou audiobooks.', badges: ['VA LIVROS'], icon: 'book' }
+    },
+    { 
+      id: 2, name: '+SAÚDE PLAY', price: '99', variant: 'dark',
+      description: 'Entretenimento e saúde na medida certa para toda a família!',
+      features: [
+        { icon: 'wifi', text: 'Internet Fibra 900Mbps' },
+        { icon: 'signal', text: 'Wi-fi de alta velocidade' },
+        { icon: 'smartphone', text: 'App Netiz - seu app para serviços' },
+        { icon: 'download', text: '900Mbps / 450Mbps up' },
+        { icon: 'stethoscope', text: 'Atendimento Médico ONLINE 24h para você e mais 3 dependentes' },
+        { icon: 'user-md', text: 'CLÍNICO GERAL E PEDIATRIA' }
+      ],
+      promo: { text: 'App de Streaming com filmes e séries dos estúdios Universal e muito mais.', badges: ['VA LIVROS', 'WATCH', 'UNIVERSAL'], icon: 'tv' }
+    },
+    { 
+      id: 3, name: 'PLANO FAMÍLIA', price: '109,00', variant: 'light',
+      description: 'Conecte todos os dispositivos da sua família com nosso PLANO FAMÍLIA e tenha o melhor da diversão.',
+      features: [
+        { icon: 'wifi', text: 'Internet Fibra 900Mbps', highlight: true },
+        { icon: 'signal', text: 'Wi-fi de alta velocidade' },
+        { icon: 'smartphone', text: 'App Netiz - seu app para serviços' },
+        { icon: 'download', text: '900Mbps / 450Mbps up', highlight: true }
+      ],
+      promo: { text: 'App de Streaming com filmes e séries e muito mais.', badges: ['WATCH', 'HBO MAX', 'VA LIVROS'], icon: 'tv' }
+    }
   ];
-  const [sortAsc, setSortAsc] = useState(true);
-  const sortedPlans = [...plans].sort((a,b) => sortAsc ? parseFloat(a.price) - parseFloat(b.price) : parseFloat(b.price) - parseFloat(a.price));
 
   const renderStep4 = () => (
-    <div className="anim-fade-in content-box">
-      <h2>Escolha seu Plano</h2>
-      <button className="link-btn mb-4" onClick={() => setSortAsc(!sortAsc)}>Ordenar por preço ({sortAsc ? 'Crescente' : 'Decrescente'})</button>
-      <div className="plans-grid-stacked">
-        {sortedPlans.map(p => (
+    <div className="anim-fade-in content-box plans-container-wide">
+      <h2 style={{textAlign: 'center', marginBottom: '32px', fontSize: '28px', color: '#0F4A9F'}}>Escolha seu Plano</h2>
+      <div className="ntz-plans-row">
+        {plans.map(p => (
           <PlanCard 
             key={p.id} 
-            name={p.name} 
-            price={p.price} 
-            speed={p.speed} 
-            features={p.features} 
+            plan={p}
             onSelect={() => { setSelectedPlan(p); setStep(5); }} 
           />
         ))}
