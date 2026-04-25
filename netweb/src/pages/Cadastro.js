@@ -15,7 +15,7 @@ const Cadastro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password && formData.password === formData.confirmPassword && formData.acceptTerms) {
-      navigate('/home');
+      navigate('/home', { state: { user: formData } });
     } else {
       setErrors({ confirmPassword: 'Verifique senhas e termos' });
     }

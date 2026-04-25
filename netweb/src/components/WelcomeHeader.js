@@ -17,7 +17,7 @@ const WelcomeHeader = ({ currentUser, onLogout }) => {
           Suporte
         </button>
         <button className="btn-outline">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '8px'}}><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '8px'}}><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
           Ver Planos
         </button>
 
@@ -32,8 +32,8 @@ const WelcomeHeader = ({ currentUser, onLogout }) => {
           <div className="profile-info" onClick={onLogout}>
             <div className="profile-pic"></div>
             <div className="profile-text">
-              <span className="profile-name">{currentUser} Silva</span>
-              <span className="profile-role">Cliente</span>
+              <span className="profile-name">{currentUser}</span>
+              <span className="profile-role">Cliente VIP</span>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>

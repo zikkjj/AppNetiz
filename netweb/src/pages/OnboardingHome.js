@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Stepper from '../components/UI/Stepper';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
@@ -13,6 +13,9 @@ import '../Onboarding.css';
 
 const OnboardingHome = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const user = location.state?.user || { name: 'Cliente Silva', email: '' }; // fallbacks se não ver do Cadastro
+
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState(null); 
@@ -20,10 +23,10 @@ const OnboardingHome = () => {
   const [cep, setCep] = useState('');
   const [address, setAddress] = useState({ rua: '', numero: '', bairro: '' });
   const [hasCoverage, setHasCoverage] = useState(true);
-  const [leadForm, setLeadForm] = useState({ name: '', phone: '' });
+  const [leadForm, setLeadForm] = useState({ name: user.name || '', phone: '' });
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [preRegister, setPreRegister] = useState({ fullName: '', dddPhone: '' });
-  const [finalRegister, setFinalRegister] = useState({ cpf: '', email: '', birthDate: '', paymentMethod: 'credit' });
+  
+  const [finalRegister, setFinalRegister] = useState({ cpf: '', email: user.email || '', birthDate: '', paymentMethod: 'credit' });
 
   const handleCheckCep = async () => {
     setIsLoading(true);
@@ -134,14 +137,10 @@ const OnboardingHome = () => {
     </div>
   );
 
-  const handlePreReg = () => {
-    if (preRegister.fullName && preRegister.dddPhone.length >= 10) setStep(6);
-  };
-
   const handleFinal = () => {
     if (finalRegister.cpf.length >= 11) {
       setIsLoading(true);
-      setTimeout(() => { setIsLoading(false); setStep(7); }, 2000);
+      setTimeout(() => { setIsLoading(false); setStep(6); }, 2000);
     }
   };
 
@@ -149,7 +148,7 @@ const OnboardingHome = () => {
     <div className="onboarding-layout">
       <div className="onboarding-header">
         <img src={logo} alt="Netiz" className="onboarding-logo" />
-        <Stepper currentStep={step} totalSteps={7} />
+        <Stepper currentStep={step} totalSteps={6} />
       </div>
 
       <div className="onboarding-main">
@@ -193,17 +192,12 @@ const OnboardingHome = () => {
             
             {step === 5 && (
               <div className="anim-fade-in content-box">
-                <h2>Pré-cadastro</h2>
-                <p className="text-secondary mb-4">Você escolheu o plano <strong>{selectedPlan.name}</strong>.</p>
-                <Input label="Nome completo" value={preRegister.fullName} onChange={e => setPreRegister({...preRegister, fullName: e.target.value})} />
-                <Input label="Telefone com DDD" placeholder="(99) 99999-9999" value={preRegister.dddPhone} onChange={e => setPreRegister({...preRegister, dddPhone: e.target.value})} />
-                <Button onClick={handlePreReg} className="w-full mt-4">Continuar</Button>
-              </div>
-            )}
-
-            {step === 6 && (
-              <div className="anim-fade-in content-box">
                 <h2>Finalizar Contratação</h2>
+                <div style={{marginBottom: '16px', padding: '12px', background: '#F8F9FA', borderRadius: '8px'}}>
+                   <p style={{margin: 0, fontSize: '14px', color: '#374151'}}><strong>Cliente:</strong> {user.name}</p>
+                   <p style={{margin: 0, fontSize: '14px', color: '#1A73E8'}}><strong>Plano:</strong> {selectedPlan.name}</p>
+                </div>
+                
                 <Input label="CPF" placeholder="000.000.000-00" value={finalRegister.cpf} onChange={e => setFinalRegister({...finalRegister, cpf: e.target.value})} />
                 <Input label="E-mail" value={finalRegister.email} onChange={e => setFinalRegister({...finalRegister, email: e.target.value})} />
                 <Input label="Data de nascimento" type="date" value={finalRegister.birthDate} onChange={e => setFinalRegister({...finalRegister, birthDate: e.target.value})} />
@@ -216,25 +210,25 @@ const OnboardingHome = () => {
                     onChange={e => setFinalRegister({...finalRegister, paymentMethod: e.target.value})}
                   >
                     <option value="credit">Cartão de Crédito</option>
-                    <option value="boleto">Boleto</option>
+                    <option value="boleto">Boleto (Recomendado)</option>
                     <option value="debit">Débito em Conta</option>
                   </select>
                 </div>
 
-                <Button onClick={handleFinal} className="w-full mt-4 btn-warning">Finalizar Contratação</Button>
+                <Button onClick={handleFinal} className="w-full mt-4 btn-warning">Contratar agora</Button>
               </div>
             )}
 
-            {step === 7 && (
+            {step === 6 && (
               <div className="anim-fade-in content-box text-center">
                 <div className="success-circle-huge">✓</div>
-                <h2 className="success-text mt-4">Tudo Certo! 🎉</h2>
-                <p>Seu pedido de instalação foi confirmado com sucesso.</p>
+                <h2 className="success-text mt-4">Tudo Certo, {user.name.split(' ')[0]}! 🎉</h2>
+                <p>Seu pedido do plano <strong>{selectedPlan.name}</strong> foi confirmado com sucesso.</p>
                 <div className="protocol-box">
                    Protocolo: <strong>NTZ-{Math.floor(Math.random()*100000)}</strong>
                 </div>
-                <p className="install-notice">Prazo de instalação: <strong>5 dias úteis</strong>.</p>
-                <Button onClick={() => navigate('/dashboard')} className="w-full mt-4">Acessar Meu Dashboard</Button>
+                <p className="install-notice">Prazo de instalação: <strong>Amanhã à tarde</strong>.</p>
+                <Button onClick={() => navigate('/dashboard', { state: { user, plan: selectedPlan } })} className="w-full mt-4">Acessar Meu Dashboard</Button>
               </div>
             )}
           </>

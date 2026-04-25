@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/home" element={<OnboardingHome />} />
-        <Route path="/dashboard" element={<WelcomeScreen currentUser="João" onLogout={() => window.location.href = '/login'} />} />
+        <Route path="/dashboard" element={<WelcomeScreen onLogout={() => window.location.href = '/login'} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,19 +1,27 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './WelcomeScreen.css';
 import Sidebar from './Sidebar';
 import WelcomeHeader from './WelcomeHeader';
 import DashboardCards from './DashboardCards';
 import DevicesList from './DevicesList';
 
-const WelcomeScreen = ({ currentUser, onLogout }) => {
+const WelcomeScreen = ({ onLogout }) => {
+  const location = useLocation();
+  const user = location.state?.user || { name: 'Cliente VIP' };
+  const plan = location.state?.plan;
+
+  // Pega apenas o primeiro nome para não estourar layout longo
+  const firstName = user.name.split(' ')[0] || 'Visitante';
+
   return (
     <div className="dashboard-layout">
       <Sidebar />
       <main className="dashboard-main">
-        <WelcomeHeader currentUser={currentUser} onLogout={onLogout} />
+        <WelcomeHeader currentUser={firstName} onLogout={onLogout} />
         
         <div className="dashboard-content-area">
-          <DashboardCards />
+          <DashboardCards plan={plan} />
           
           <div className="devices-container-row">
             <div className="devices-flex-filler">
