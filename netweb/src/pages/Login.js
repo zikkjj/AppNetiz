@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../Assets/logo.png';
+import bannerImage from '../Assets/melhor-plano-banner-site-mobile.webp';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,25 +23,25 @@ const Login = () => {
   };
 
   return (
-    <div className="App flat-style">
-      <div className="registration-container">
-        <div className="login-flat-container">
+    <div className="login-page">
+      <div className="login-column-left">
+        <div className="login-form-wrapper">
           <div className="logo-flat">
             <img src={logo} alt="Logo Netiz" />
           </div>
-          
+
           <form onSubmit={handleSubmit} className="flat-login-form">
             <div className="input-wrapper">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="input-icon">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                placeholder="Email" 
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
                 className={errors.email ? 'error-input' : ''}
               />
               {errors.email && <span className="error-tooltip">{errors.email}</span>}
@@ -51,12 +52,12 @@ const Login = () => {
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
-              <input 
-                type="password" 
-                name="password" 
-                value={formData.password} 
-                onChange={handleChange} 
-                placeholder="Senha" 
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Senha"
                 className={errors.password ? 'error-input' : ''}
               />
               {errors.password && <span className="error-tooltip">{errors.password}</span>}
@@ -70,6 +71,10 @@ const Login = () => {
             </div>
           </form>
         </div>
+      </div>
+
+      <div className="login-column-right">
+        <img src={bannerImage} alt="Banner" className="login-banner-image" />
       </div>
     </div>
   );

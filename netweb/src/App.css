@@ -420,3 +420,62 @@ body {
 .checkbox-label span {
   flex: 1;
 }
+
+/* ---------------------- TWO-COLUMN LOGIN LAYOUT ---------------------- */
+.login-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.login-column-left {
+  width: 50%;
+  background-color: #1AAECC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  animation: slideUp 0.5s ease-out;
+}
+
+.login-column-right {
+  width: 50%;
+  overflow: hidden;
+}
+
+.login-banner-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-column-left {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .login-column-right {
+    width: 100%;
+    height: 300px;
+  }
+
+  .login-banner-image {
+    height: 300px;
+  }
+}
